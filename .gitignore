@@ -15,3 +15,5 @@ Podfile.lock
 /wrappers/python/venv/
 .vscode
 _build/
+server/__pycache__
+genesis
