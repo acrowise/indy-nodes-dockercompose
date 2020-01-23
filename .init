@@ -1,0 +1,9 @@
+#!/bin/bash
+
+
+sudo ifconfig lo0 alias 12.0.0.100
+sudo ifconfig lo0 alias 12.0.0.101
+sudo ifconfig lo0 alias 12.0.0.102
+sudo ifconfig lo0 alias 12.0.0.103
+sudo ifconfig lo0 alias 12.0.0.104
+sudo ifconfig lo0 alias 12.0.0.105
