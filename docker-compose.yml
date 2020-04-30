@@ -18,13 +18,21 @@ services:
     command: 'bash -c ''./scripts/start_webserver.sh'''
     environment:
       - IPS=${IP1},${IP2},${IP3},${IP4}
+      - NODE1_PORT=${NODE1_PORT}
+      - NODE2_PORT=${NODE2_PORT}
+      - NODE3_PORT=${NODE3_PORT}
+      - NODE4_PORT=${NODE4_PORT}
+      - NODE1_CLIENT_PORT=${NODE1_CLIENT_PORT}
+      - NODE2_CLIENT_PORT=${NODE2_CLIENT_PORT}
+      - NODE3_CLIENT_PORT=${NODE3_CLIENT_PORT}
+      - NODE4_CLIENT_PORT=${NODE4_CLIENT_PORT}
       - HOST=${HOSTIP}
       - RUST_LOG=${RUST_LOG}
     networks:
       services:
         ipv4_address: ${HOSTIP}
     ports:
-      - 9000:8000
+      - 8000:8000
     depends_on:
       - node1
       - node2
@@ -37,7 +45,6 @@ services:
       - node2-data:/home/indy/.mnt/node2
       - node3-data:/home/indy/.mnt/node3
       - node4-data:/home/indy/.mnt/node4
-
   #
   # Nodes
   #
@@ -48,11 +55,21 @@ services:
       services:
         ipv4_address: ${IP1}
     ports:
-      - 9701:9701
-      - 9702:9702
+      - ${NODE1_PORT}:${NODE1_PORT}
+      - ${NODE1_CLIENT_PORT}:${NODE1_CLIENT_PORT}
     environment:
       - IPS=${IP1},${IP2},${IP3},${IP4}
       - RUST_LOG=${RUST_LOG}
+      - NODE_PORT=${NODE1_PORT}
+      - NODE_CLIENT_PORT=${NODE1_CLIENT_PORT}
+      - NODE1_PORT=${NODE1_PORT}
+      - NODE2_PORT=${NODE2_PORT}
+      - NODE3_PORT=${NODE3_PORT}
+      - NODE4_PORT=${NODE4_PORT}
+      - NODE1_CLIENT_PORT=${NODE1_CLIENT_PORT}
+      - NODE2_CLIENT_PORT=${NODE2_CLIENT_PORT}
+      - NODE3_CLIENT_PORT=${NODE3_CLIENT_PORT}
+      - NODE4_CLIENT_PORT=${NODE4_CLIENT_PORT}
     volumes:
       - node1-data:/home/indy/ledger
 
@@ -63,11 +80,21 @@ services:
       services:
         ipv4_address: ${IP2}
     ports:
-      - 9703:9703
-      - 9704:9704
+      - ${NODE2_PORT}:${NODE2_PORT}
+      - ${NODE2_CLIENT_PORT}:${NODE2_CLIENT_PORT}
     environment:
       - IPS=${IP1},${IP2},${IP3},${IP4}
       - RUST_LOG=${RUST_LOG}
+      - NODE_PORT=${NODE2_PORT}
+      - NODE_CLIENT_PORT=${NODE2_CLIENT_PORT}
+      - NODE1_PORT=${NODE1_PORT}
+      - NODE2_PORT=${NODE2_PORT}
+      - NODE3_PORT=${NODE3_PORT}
+      - NODE4_PORT=${NODE4_PORT}
+      - NODE1_CLIENT_PORT=${NODE1_CLIENT_PORT}
+      - NODE2_CLIENT_PORT=${NODE2_CLIENT_PORT}
+      - NODE3_CLIENT_PORT=${NODE3_CLIENT_PORT}
+      - NODE4_CLIENT_PORT=${NODE4_CLIENT_PORT}
     volumes:
       - node2-data:/home/indy/ledger
 
@@ -78,11 +105,21 @@ services:
       services:
         ipv4_address: ${IP3}
     ports:
-      - 9705:9705
-      - 9706:9706
+      - ${NODE3_PORT}:${NODE3_PORT}
+      - ${NODE3_CLIENT_PORT}:${NODE3_CLIENT_PORT}
     environment:
       - IPS=${IP1},${IP2},${IP3},${IP4}
       - RUST_LOG=${RUST_LOG}
+      - NODE_PORT=${NODE3_PORT}
+      - NODE_CLIENT_PORT=${NODE3_CLIENT_PORT}
+      - NODE1_PORT=${NODE1_PORT}
+      - NODE2_PORT=${NODE2_PORT}
+      - NODE3_PORT=${NODE3_PORT}
+      - NODE4_PORT=${NODE4_PORT}
+      - NODE1_CLIENT_PORT=${NODE1_CLIENT_PORT}
+      - NODE2_CLIENT_PORT=${NODE2_CLIENT_PORT}
+      - NODE3_CLIENT_PORT=${NODE3_CLIENT_PORT}
+      - NODE4_CLIENT_PORT=${NODE4_CLIENT_PORT}
     volumes:
       - node3-data:/home/indy/ledger
 
@@ -93,11 +130,21 @@ services:
       services:
         ipv4_address: ${IP4}
     ports:
-      - 9707:9707
-      - 9708:9708
+      - ${NODE4_PORT}:${NODE4_PORT}
+      - ${NODE4_CLIENT_PORT}:${NODE4_CLIENT_PORT}
     environment:
       - IPS=${IP1},${IP2},${IP3},${IP4}
       - RUST_LOG=${RUST_LOG}
+      - NODE_PORT=${NODE4_PORT}
+      - NODE_CLIENT_PORT=${NODE4_CLIENT_PORT}
+      - NODE1_PORT=${NODE1_PORT}
+      - NODE2_PORT=${NODE2_PORT}
+      - NODE3_PORT=${NODE3_PORT}
+      - NODE4_PORT=${NODE4_PORT}
+      - NODE1_CLIENT_PORT=${NODE1_CLIENT_PORT}
+      - NODE2_CLIENT_PORT=${NODE2_CLIENT_PORT}
+      - NODE3_CLIENT_PORT=${NODE3_CLIENT_PORT}
+      - NODE4_CLIENT_PORT=${NODE4_CLIENT_PORT}
     volumes:
       - node4-data:/home/indy/ledger
 

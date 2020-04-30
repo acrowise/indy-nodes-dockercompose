@@ -94,27 +94,32 @@ if [ ! -z $ipAddresses ]; then
     echo -e "Generated genesis transaction file; ${genesisFileTemplatePath}"\\n
     cat ${genesisFileTemplatePath}
 
-#    echo -e \\n"------------------------------------------------------------------------------------------------"
-#    echo -e "Changing ports:"
-#    echo -e "- client_port => 80"
-#    echo -e "- node_port => 9418"\\n
-#    echo -e mv ${genesisFileTemplatePath} ${genesisFileTemplateBackupPath}
-#    mv ${genesisFileTemplatePath} ${genesisFileTemplateBackupPath}
-#    echo -e "cat ${genesisFileTemplateBackupPath} | sed 's~\(\"client_port\":\).\{4\}\(,\)~\180\2~g' | sed 's~\(\"node_port\":\).\{4\}\(,\)~\19418\2~g' > ${genesisFileTemplatePath}"
-#    cat ${genesisFileTemplateBackupPath} | sed 's~\(\"client_port\":\).\{4\}\(,\)~\180\2~g' | sed 's~\(\"node_port\":\).\{4\}\(,\)~\19418\2~g' > ${genesisFileTemplatePath}
+    
+    echo -e \\n"------------------------------------------------------------------------------------------------"
+    echo -e "Changing ports:"
+    echo -e "- client_port => $NODE_CLIENT_PORT"
+    echo -e "- node_port => $NODE_PORT"\\n
+    echo -e mv ${genesisFileTemplatePath} ${genesisFileTemplateBackupPath}
+    mv ${genesisFileTemplatePath} ${genesisFileTemplateBackupPath}
+    echo -e "Replace genesis"
+    cat ${genesisFileTemplateBackupPath} | sed 's~\(\"node_port\"\:\)9701~\1'"$NODE1_PORT"'~g' | sed 's~\(\"node_port\"\:\)9703~\1'"$NODE2_PORT"'~g' | sed 's~\(\"node_port\"\:\)9705~\1'"$NODE3_PORT"'~g' | sed 's~\(\"node_port\"\:\)9707~\1'"$NODE4_PORT"'~g' | sed 's~\(\"client_port\":\)9702~\1'"$NODE1_CLIENT_PORT"'~g' | sed 's~\(\"client_port\":\)9704~\1'"$NODE2_CLIENT_PORT"'~g' | sed 's~\(\"client_port\":\)9706~\1'"$NODE3_CLIENT_PORT"'~g' | sed 's~\(\"client_port\":\)9708~\1'"$NODE4_CLIENT_PORT"'~g'  > ${genesisFileTemplatePath}
+                
 
-#    echo -e \\n"------------------------------------------------------------------------------------------------"
-#    echo -e "Initial state of ${genesisFilePath}"\\n
-#    cat ${genesisFilePath}
+    echo -e \\n"------------------------------------------------------------------------------------------------"
+    echo -e "Initial state of ${genesisFilePath}"\\n
+    cat ${genesisFilePath}
 
-#    echo -e \\n"------------------------------------------------------------------------------------------------"
-#    echo -e "Overwriting ..."
-#    echo -e "cat ${genesisFileTemplatePath} > ${genesisFilePath}"
-#    cat ${genesisFileTemplatePath} > ${genesisFilePath}
-#
-#    echo -e \\n"------------------------------------------------------------------------------------------------"
-#    echo -e "Final genesis transaction file; ${genesisFilePath}"\\n
-#    cat ${genesisFilePath}
+    echo -e \\n"------------------------------------------------------------------------------------------------"
+    echo -e "Overwriting ..."
+    echo -e "cat ${genesisFileTemplatePath} > ${genesisFilePath}"
+    cat ${genesisFileTemplatePath} > ${genesisFilePath}
+
+    echo -e \\n"------------------------------------------------------------------------------------------------"
+    echo -e "Final genesis transaction file; ${genesisFilePath}"\\n
+    cat ${genesisFilePath}
+
+
+
     echo -e "================================================================================================"
 elif [ ! -z $ipAddress ]; then
     echo -e \\n\\n"================================================================================================"

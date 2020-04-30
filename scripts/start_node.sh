@@ -4,8 +4,11 @@ set -e
 
 HOST="${HOST:-0.0.0.0}"
 NODE_NUM="${1}"
-START_PORT="9700"
-NODE_PORT=$((START_PORT + ( NODE_NUM * 2 ) - 1 ))
+START_PORT="9800"
+NODE_PORT=${NODE_PORT:-$((START_PORT + ( NODE_NUM * 2 ) - 1 ))}
+#NODE_PORT=$((START_PORT + ( NODE_NUM * 2 ) - 1 ))
+
+echo "Node Port ${NODE_PORT}"
 
 if [ ! -d "/var/lib/indy/sandbox/keys" ]; then
     echo "Ledger does not exist - Creating..."
