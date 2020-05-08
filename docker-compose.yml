@@ -2,9 +2,6 @@ version: '3.7'
 
 networks:
   services:
-    ipam:
-      config:
-        - subnet: ${SUBNET}
 
 services:
   #
