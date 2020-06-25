@@ -1,7 +1,7 @@
 version: '3.7'
 
-networks:
-  services:
+#networks:
+#  services:
 
 services:
   #
@@ -25,8 +25,8 @@ services:
       - NODE4_CLIENT_PORT=${NODE4_CLIENT_PORT}
       - HOST=${EXTERNAL_IP}
       - RUST_LOG=${RUST_LOG}
-    networks:
-      services:
+    #networks:
+     # services:
         #ipv4_address: ${HOSTIP}
     ports:
       - ${WEB_SERVER_PORT}:8000
@@ -48,8 +48,8 @@ services:
   node1:
     image: indy-node
     command: 'bash -c ''./scripts/start_node.sh 1'''
-    networks:
-      services:
+    #networks:
+    #  services:
         #ipv4_address: ${IP1}
     ports:
       - ${NODE1_PORT}:${NODE1_PORT}
@@ -73,8 +73,8 @@ services:
   node2:
     image: indy-node
     command: 'bash -c ''./scripts/start_node.sh 2'''
-    networks:
-      services:
+    #networks:
+    #  services:
         #ipv4_address: ${IP2}
     ports:
       - ${NODE2_PORT}:${NODE2_PORT}
@@ -98,8 +98,8 @@ services:
   node3:
     image: indy-node
     command: 'bash -c ''./scripts/start_node.sh 3'''
-    networks:
-      services:
+    #networks:
+    #  services:
         #ipv4_address: ${IP3}
     ports:
       - ${NODE3_PORT}:${NODE3_PORT}
@@ -123,8 +123,8 @@ services:
   node4:
     image: indy-node
     command: 'bash -c ''./scripts/start_node.sh 4'''
-    networks:
-      services:
+    #networks:
+    #  services:
         #ipv4_address: ${IP4}
     ports:
       - ${NODE4_PORT}:${NODE4_PORT}
